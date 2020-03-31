@@ -5,19 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Line Chart</title>
-    <style>
-      svg {
-        border: 1px solid black;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>Line Chart</h1>
+    <div class="wrapper">
+      <h1>Coronavirus COVID-19 | New Cases Per Day</h1>
 
-    <button id="previousDataset">Previous</button>
-    <button id="nextDataset">Next</button>
-    <button id="reset">Reset</button>
-    <br />
+      <p class="description">
+        Are we flattening the curve? Here is a data visualization of the number
+        of new cases per day. You can filter by country/province/region. The
+        order is by country. You can hover your mouse over the points to see
+        more information. You can also click on the list to see a specific
+        country.
+        <em
+          >Please note, some countries have data by province/region: China,
+          Canada, Australia,</em
+        >
+      </p>
+
+      <div class="dashboard">
+        <div id="country-list-container" class="country-list-container"></div>
+
+        <div>
+          <button id="previousDataset">Previous</button>
+          <button id="nextDataset">Next</button>
+          <button id="reset">Reset</button>
+          <br />
+          <div id="vis" class="vis"></div>
+
+          <p>
+            <em> Data source: </em>The excellent github repository by Johns
+            Hopkins CSSE
+            <a href="https://github.com/CSSEGISandData/COVID-19"
+              >https://github.com/CSSEGISandData/COVID-19</a
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script src="../d3.min.js"></script>
     <script src="./main.js" type="module"></script>

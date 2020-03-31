@@ -1,12 +1,22 @@
 const CountryList = ({ data }) => {
-  console.log(data);
-  const list = data.map(d => `<li>${d.totalCases} ${d.name}</li>`).join('');
-  console.log('list', list);
+  const list = data
+    .map((d, index) => {
+      const html = `
+        <li data-index="${index}">
+          <strong>${d.totalCases.toLocaleString()}</strong>
+          ${d.name} 
+          <em>(${d.newCases.toLocaleString()})</em>
+        </li>
+      `;
+      return html;
+    })
+    .join('');
 
   return `
-    <div id="countryList" style="max-height: 90vh;">
-      <h1>This is a list of countries</h1>
-      <ul>
+    <div id="countryList" >
+      <h2>Confirmed Cases by Country</h2>
+      <p><strong>Total</strong> Country <em>(New Today)</em>
+      <ul class="countryList">
         ${list}
       </ul>
     </div>

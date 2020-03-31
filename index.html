@@ -3,21 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Are we flattening the curve? | Number of new cases per day</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coronavirus COVID-19 | New Cases Per Day</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>Are we flattening the curve?</h1>
-    <p>Here is a data visualization of the number of new cases per day.</p>
-    <p>You can filter by country/province/region</p>
+    <div id="wrapper" class="wrapper">
+      <h1>Coronavirus COVID-19 | New Cases Per Day</h1>
 
-    <h3>About the Data</h3>
-    <p>
-      The data comes from the excellent github repository by Johns Hopkins CSSE:
-      <a href="https://github.com/CSSEGISandData/COVID-19"
-        >https://github.com/CSSEGISandData/COVID-19</a
-      >.
-    </p>
+      <p class="description">
+        Are we flattening the curve? Here is a data visualization of the number
+        of new cases per day. You can filter by country/province/region. The
+        order is by country. You can hover your mouse over the points to see
+        more information. You can also click on the list to see a specific
+        country.
+        <em
+          >Please note, some countries have data by province/region: China,
+          Canada, Australia and more.</em
+        >
+      </p>
 
-    <script src="./main.js"></script>
+      <main class="dashboard">
+        <div>
+          <button id="previousDataset">Previous</button>
+          <button id="nextDataset">Next</button>
+          <!-- <button id="reset">Reset</button> -->
+          <br />
+          <div id="vis" class="vis"></div>
+
+          <p>
+            <em> Data source: </em>The excellent github repository by Johns
+            Hopkins CSSE
+            <a href="https://github.com/CSSEGISandData/COVID-19"
+              >https://github.com/CSSEGISandData/COVID-19</a
+            >.
+          </p>
+        </div>
+
+        <div id="country-list-container" class="country-list-container"></div>
+      </main>
+    </div>
+
+    <script src="./visualization/d3.min.js"></script>
+    <script src="./main.js" type="module"></script>
   </body>
 </html>

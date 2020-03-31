@@ -1,5 +1,5 @@
-import { title } from '../components/title.js';
-import { subtitle } from '../components/subtitle.js';
+import { title } from './title.js';
+import { subtitle } from './subtitle.js';
 
 export const lineChart = ({
   g,
@@ -13,11 +13,11 @@ export const lineChart = ({
   yValue,
   lineColor,
   tooltip,
+  hidepoints,
 }) => {
   // Title
   title({ g, text: titleText, x: width / 2, y: -margin.top / 2 });
   subtitle({ g, text: total, x: width / 2, y: -margin.top / 6 });
-  console.log('total', total);
 
   // Transition
   const t = d3.transition().duration(500);
@@ -38,7 +38,7 @@ export const lineChart = ({
     .range([height, 0]);
 
   // Axes
-  const xAxisCall = d3.axisBottom(x);
+  const xAxisCall = d3.axisBottom(x).tickSize(-height);
   const xAxis = g.selectAll('.x-axis').data([null]);
   xAxis.exit().remove();
   xAxis
@@ -48,11 +48,17 @@ export const lineChart = ({
     .attr('transform', `translate(0, ${height})`)
     .merge(g.selectAll('.x-axis'))
     .transition(t)
-    .call(xAxisCall);
+    .call(xAxisCall)
+    .selectAll('text')
+    .attr('y', '10')
+    .attr('x', '-5')
+    .attr('text-anchor', 'end')
+    .attr('transform', 'rotate(-40)');
 
-  const yAxisCall = d3.axisLeft(y);
+  const yAxisCall = d3.axisLeft(y).tickSize(-width);
   const yAxis = g.selectAll('.y-axis').data([null]);
   yAxis.exit().remove();
+
   yAxis
     .enter()
     .append('g')
@@ -77,6 +83,7 @@ export const lineChart = ({
     .append('path')
     .attr('class', 'line')
     .attr('fill', 'none')
+    .attr('stroke-width', 3)
     .merge(g.selectAll('.line'))
     .attr('stroke', 'none')
     .attr('d', d => lineGen(d))
@@ -84,6 +91,7 @@ export const lineChart = ({
     .attr('stroke', lineColor);
 
   // Data Points
+  if (hidepoints) return;
   const points = g.selectAll('.dataPoint').data(data);
   points.exit().remove();
 
@@ -109,8 +117,8 @@ export const lineChart = ({
 function tooltipTemplate(d, { xValue, yValue }) {
   return `
     <div>
-      <p>New cases: ${yValue(d).toLocaleString()}</p>
-      <p>on ${xValue(d).toDateString()}</p>
+      <p><strong>${yValue(d).toLocaleString()}</strong> New Cases</p>
+      <p>on ${xValue(d).toLocaleDateString()}</p>
     </div>
   `;
 }

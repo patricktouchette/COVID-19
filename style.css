@@ -1,0 +1,85 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  border: 1px solid black;
+}
+
+.tick line {
+  opacity: 0.1;
+}
+
+.domain {
+  display: none;
+}
+
+.description {
+  max-width: 800px;
+}
+
+.wrapper {
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 100vh;
+}
+
+.dashboard > div {
+  margin-right: 3rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .dashboard {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.countryList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.countryList li {
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .countryList {
+    max-height: 60vh;
+    overflow: scroll;
+  }
+}
+
+button {
+  background: lightblue;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  min-width: 80px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+/*# sourceMappingURL=style.css.map */
