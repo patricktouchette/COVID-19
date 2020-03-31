@@ -20,10 +20,6 @@ svg {
   display: none;
 }
 
-.description {
-  max-width: 800px;
-}
-
 .wrapper {
   padding: 1rem 2rem;
   margin: 0 auto;
@@ -31,7 +27,18 @@ svg {
   height: 100vh;
 }
 
+.description {
+  max-width: 800px;
+}
+
+.lastUpdate {
+  margin-top: 0rem;
+  color: grey;
+}
+
 .dashboard {
+  padding-top: 1rem;
+
   & > div {
     margin-right: 3rem;
   }
@@ -74,4 +81,11 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+footer {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: grey;
+  text-align: center;
 }

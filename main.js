@@ -44,6 +44,13 @@ d3.csv(url).then(loadedData => {
 
   const data = processData(loadedData);
 
+  // Update the date
+  document.getElementById(
+    'lastUpdate'
+  ).textContent = `Last Update: ${data[0].dataset
+    .slice(-1)[0]
+    .date.toLocaleDateString()}`;
+
   // Render the Line chart
   render(data, index);
 
@@ -65,7 +72,7 @@ d3.csv(url).then(loadedData => {
       render(data, e.target.dataset.index);
     }
 
-    document.getElementById('wrapper').scrollIntoView();
+    document.getElementById('dashboard').scrollIntoView();
   });
 
   // Add Events to next and previous Buttons

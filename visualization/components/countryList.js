@@ -15,6 +15,7 @@ const CountryList = ({ data }) => {
   return `
     <div id="countryList" >
       <h2>Confirmed Cases by Country</h2>
+      <p><em>Click on any country to view the chart.</em></p>
       <p><strong>Total</strong> Country <em>(New Today)</em>
       <ul class="countryList">
         ${list}

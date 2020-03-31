@@ -15,15 +15,16 @@
         Are we flattening the curve? Here is a data visualization of the number
         of new cases per day. You can filter by country/province/region. The
         order is by country. You can hover your mouse over the points to see
-        more information. You can also click on the list to see a specific
-        country.
+        more information.
         <em
           >Please note, some countries have data by province/region: China,
           Canada, Australia and more.</em
         >
       </p>
 
-      <main class="dashboard">
+      <p id="lastUpdate" class="lastUpdate"></p>
+
+      <main id="dashboard" class="dashboard">
         <div>
           <button id="previousDataset">Previous</button>
           <button id="nextDataset">Next</button>
@@ -42,6 +43,19 @@
 
         <div id="country-list-container" class="country-list-container"></div>
       </main>
+
+      <footer>
+        <p>
+          View
+          <a href="https://github.com/patricktouchette/COVID-19">source code</a>
+          on github.
+        </p>
+        <p>
+          By
+          <a href="https://github.com/patricktouchette">Patrick Touchette</a>.
+          Built in 🗻 Bromont, Quebec, Canada.
+        </p>
+      </footer>
     </div>
 
     <script src="./visualization/d3.min.js"></script>

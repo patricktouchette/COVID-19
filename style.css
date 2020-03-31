@@ -21,15 +21,24 @@ svg {
   display: none;
 }
 
-.description {
-  max-width: 800px;
-}
-
 .wrapper {
   padding: 1rem 2rem;
   margin: 0 auto;
   max-width: 1200px;
   height: 100vh;
+}
+
+.description {
+  max-width: 800px;
+}
+
+.lastUpdate {
+  margin-top: 0rem;
+  color: grey;
+}
+
+.dashboard {
+  padding-top: 1rem;
 }
 
 .dashboard > div {
@@ -81,5 +90,12 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+footer {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: grey;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
