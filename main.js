@@ -3,6 +3,7 @@ import { Tooltip } from './visualization/components/Tooltip.js';
 import { lineChart } from './visualization/components/lineChart.js';
 import CountryList from './visualization/components/countryList.js';
 
+// Init Globals
 let index = 0;
 const url =
   './csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv';
@@ -29,6 +30,7 @@ function render(data, i) {
     margin: vis.margin,
     titleText: name,
     total: dataset.slice(-1)[0].totalCases.toLocaleString(),
+    newCases: dataset.slice(-1)[0].newCases.toLocaleString(),
     xValue: d => d.date,
     yValue: d => d.newCases,
     lineColor: 'lightblue',
@@ -38,55 +40,6 @@ function render(data, i) {
 
   index = i;
 }
-
-d3.csv(url).then(loadedData => {
-  console.log('loadedData', loadedData);
-
-  const data = processData(loadedData);
-
-  // Update the date
-  document.getElementById(
-    'lastUpdate'
-  ).textContent = `Last Update: ${data[0].dataset
-    .slice(-1)[0]
-    .date.toLocaleDateString()}`;
-
-  // Render the Line chart
-  render(data, index);
-
-  // Create List of countries
-  const countryList = document.getElementById('country-list-container');
-  countryList.insertAdjacentHTML('beforeend', CountryList({ data, render }));
-
-  // Add event to List of countries
-  countryList.addEventListener('click', e => {
-    const { tagName } = e.target;
-
-    if (tagName === 'EM' || tagName === 'STRONG') {
-      if (e.target.parentElement.tagName === 'LI') {
-        render(data, e.target.parentElement.dataset.index);
-      }
-    }
-
-    if (tagName === 'LI') {
-      render(data, e.target.dataset.index);
-    }
-
-    document.getElementById('dashboard').scrollIntoView();
-  });
-
-  // Add Events to next and previous Buttons
-  document.getElementById('previousDataset').addEventListener('click', () => {
-    index -= 1;
-    if (index < 0) index = 0;
-    render(data, index);
-  });
-
-  document.getElementById('nextDataset').addEventListener('click', () => {
-    index += 1;
-    render(data, index);
-  });
-});
 
 function parseDataset(data) {
   const parseDate = d3.timeParse('%m/%d/%y');
@@ -134,3 +87,53 @@ function processData(loadedData) {
   console.log('data', data);
   return data;
 }
+
+// Fetch the data then render the visualization
+d3.csv(url).then(loadedData => {
+  console.log('loadedData', loadedData);
+
+  const data = processData(loadedData);
+
+  // Update the date
+  document.getElementById(
+    'lastUpdate'
+  ).textContent = `Last Update: ${data[0].dataset
+    .slice(-1)[0]
+    .date.toLocaleDateString()}`;
+
+  // Render the Line chart
+  render(data, index);
+
+  // Create List of countries
+  const countryList = document.getElementById('country-list-container');
+  countryList.insertAdjacentHTML('beforeend', CountryList({ data, render }));
+
+  // Add event to List of countries
+  countryList.addEventListener('click', e => {
+    const { tagName } = e.target;
+
+    if (tagName === 'EM' || tagName === 'STRONG') {
+      if (e.target.parentElement.tagName === 'LI') {
+        render(data, +e.target.parentElement.dataset.index);
+      }
+    }
+
+    if (tagName === 'LI') {
+      render(data, +e.target.dataset.index);
+    }
+
+    document.getElementById('dashboard').scrollIntoView();
+  });
+
+  // Add Events to next and previous Buttons
+  document.getElementById('previousDataset').addEventListener('click', () => {
+    index -= 1;
+    if (index < 0) index = 0;
+    render(data, index);
+  });
+
+  document.getElementById('nextDataset').addEventListener('click', () => {
+    index += 1;
+    render(data, index);
+  });
+});
