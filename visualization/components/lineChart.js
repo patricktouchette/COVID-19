@@ -9,6 +9,7 @@ export const lineChart = ({
   margin,
   titleText,
   total,
+  newCases,
   xValue,
   yValue,
   lineColor,
@@ -17,7 +18,13 @@ export const lineChart = ({
 }) => {
   // Title
   title({ g, text: titleText, x: width / 2, y: -margin.top / 2 });
-  subtitle({ g, text: total, x: width / 2, y: -margin.top / 6 });
+  subtitle({
+    g,
+    text1: total,
+    text2: `(+${newCases})`,
+    x: width / 2,
+    y: -margin.top / 6,
+  });
 
   // Transition
   const t = d3.transition().duration(500);

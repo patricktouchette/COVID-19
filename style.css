@@ -10,7 +10,8 @@ body {
 }
 
 svg {
-  border: 1px solid black;
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 -1px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 -1px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .tick line {
@@ -79,7 +80,7 @@ svg {
 button {
   background: lightblue;
   margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   color: black;
   border: none;
